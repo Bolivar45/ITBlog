@@ -1,0 +1,29 @@
+﻿@model ITBlog.Models.Post
+@{
+    ViewBag.Title = "IndexPost";
+}
+
+<table>
+    <tr>
+        <td><img src="@Model.ImgPath" alt="idk" style="width:700px; height: 350px;"></td>
+    </tr>
+    <tr>
+        <td><h2>@Model.Title</h2></td>
+    </tr>
+    <tr>
+        <td>
+            <div style="word-wrap: break-word; width: 700px;">
+                @Model.Description
+            </div>
+        </td>
+    </tr>
+</table>
+
+<hr />
+@Html.ActionLink("К списку новостей", "Index", "Home")
+
+
+
+
+
+

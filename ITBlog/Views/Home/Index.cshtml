@@ -1,0 +1,43 @@
+﻿@using X.PagedList.Mvc;
+@using X.PagedList;
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "ItBlog";
+}
+
+<div>
+    <table>
+        @foreach (var post in ViewBag.onePageOfPosts)
+        {
+            <tr>
+                <td>
+                    <h3>
+                        @post.Title
+                    </h3>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 35%">
+                    <img src="@post.ImgPath" alt="@post.ImgPath" style="width:200px; height: 150px;">
+                </td>
+                <td style="width: 60%">
+                    <div style="word-wrap: break-word; width: 700px;">
+                        @{
+                            string ShortDesc;
+                            if (post.Description.Length > 251)
+                            { ShortDesc = post.Description.Substring(0, 250) + "..."; }
+                            else
+                            { ShortDesc = post.Description; }
+                        }
+                        @ShortDesc
+                    </div>
+                    <hr />
+                    @Html.ActionLink("Подробнее...", "Index", "Post", new { id = post.Id }, null)
+                </td>
+            </tr>
+        }
+    </table>
+    @Html.PagedListPager((IPagedList)ViewBag.onePageOfPosts, page => Url.Action("Index", new { page }))
+</div>
+
+

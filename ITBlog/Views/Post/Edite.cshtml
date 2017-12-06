@@ -1,0 +1,29 @@
+﻿@model ITBlog.Models.Post
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+@using (Html.BeginForm("Edite", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <fieldset>
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.ImgPath)
+        <p>
+            @Html.LabelFor(m => m.Title, "Заголовок поста")
+            <br />
+            @Html.EditorFor(m => m.Title)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Description, "Текст поста")
+            <br />
+            @Html.EditorFor(m => m.Description)
+        </p>
+        <p>Картинка поста: </p>
+        <img src="@Model.ImgPath" alt="idk" style="width:200px; height: 150px;"> <br>
+        <input type="file" name="upload" /><br>
+        <input type="submit" value="Сохранить" />
+    </fieldset>
+}
+
+
